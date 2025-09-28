@@ -1,13 +1,3 @@
-proxy-groups:
-- interval: 300
-  timeout: 3000
-  url: https://www.google.com/generate_204
-  lazy: true
-  max-failed-times: 3
-  hidden: false
-  name: 💬ChatGPT
-  type: select
-  include-all: false
   proxies:
   - 🇭🇰 Hong Kong
   - 🇭🇰 Hong Kong [Residential]
@@ -319,7 +309,150 @@ proxy-groups:
   proxies:
   - DIRECT
   - 分類選擇
+- interval: 300
+  timeout: 3000
+  url: https://www.google.com/generate_204
+  lazy: true
+  max-failed-times: 3
+  hidden: false
+  name: 多媒體
+  type: select
+  proxies:
+  - DIRECT
+  - 分類選擇
+  - 🇭🇰 Hong Kong
+  - 🇭🇰 Hong Kong [Residential]
+  - 🇹🇼 Taiwan
+  - 🇯🇵 Japan
+  - 🇯🇵 Japan [Residential]
+  - 🇸🇬 Singapore
+  - 🇲🇾 Malaysia [Residential]
+  - 🇹🇭 Thailand
+  - 🇰🇷 South Korea
+  - 🇻🇳 Viet Nam
+  - 🇵🇭 Philippines
+  - 🇮🇩 Indonesia
+  - 🇮🇳 India
+  - 🇱🇰 Sri Lanka
+  - 🇹🇷 Turkey
+  - 🇰🇿 Kazakhstan
+  - 🇵🇰 Pakistan
+  - 🇮🇱 Israel
+  - 🇺🇿 Uzbekistan
+  - 🇳🇵 Nepal
+  - 🇦🇪 United Arab Emirates
+  - 🇸🇦 Saudi Arabia
+  - 🇦🇺 Australia
+  - 🇳🇿 New Zealand
+  - 🇪🇸 Spain
+  - 🇮🇹 Italy
+  - 🇬🇧 United Kingdom
+  - 🇧🇬 Bulgaria
+  - 🇨🇦 Canada
+  - 🇩🇪 Germany
+  - 🇦🇹 Austria
+  - 🇫🇷 France
+  - 🇧🇾 Belarus
+  - 🇷🇴 Romania
+  - 🇮🇸 Iceland
+  - 🇱🇻 Latvia
+  - 🇩🇰 Denmark
+  - 🇳🇴 Norway
+  - 🇫🇮 Finland
+  - 🇸🇪 Sweden
+  - 🇳🇱 Netherland
+  - 🇷🇺 Russia
+  - 🇺🇲 United States
+  - 🇺🇲 United States [Residential]
+  - 🇲🇽 Mexico
+  - 🇵🇪 Peru
+  - 🇪🇨 Ecuador
+  - 🇨🇴 Colombia
+  - 🇦🇷 Argentina
+  - 🇨🇷 Costa Rica
+  - 🇨🇱 Chile
+  - 🇿🇦 South Africa
+  - 🇳🇬 Nigeria
+  - 🇪🇬 Egypt
+  - 🇰🇪 Kenya
 rules:
+- IN-USER,TikTok*,多媒體
+- DOMAIN-SUFFIX,byteoversea.com,多媒體
+- DOMAIN-SUFFIX,ibytedtos.com,多媒體
+- DOMAIN-SUFFIX,ipstatp.com,多媒體
+- DOMAIN-SUFFIX,muscdn.com,多媒體
+- DOMAIN-SUFFIX,musical.ly,多媒體
+- DOMAIN-SUFFIX,tik-tokapi.com,多媒體
+- DOMAIN-SUFFIX,tiktok.com,多媒體
+- DOMAIN-SUFFIX,tiktokcdn.com,多媒體
+- DOMAIN-SUFFIX,tiktokv.com,多媒體
+- IN-USER,Disney*,多媒體
+- IN-USER,Disney+*,多媒體
+- DOMAIN,cdn.registerdisney.go.com,多媒體
+- DOMAIN-SUFFIX,adobedtm.com,多媒體
+- DOMAIN-SUFFIX,bam.nr-data.net,多媒體
+- DOMAIN-SUFFIX,bamgrid.com,多媒體
+- DOMAIN-SUFFIX,braze.com,多媒體
+- DOMAIN-SUFFIX,cdn.optimizely.com,多媒體
+- DOMAIN-SUFFIX,cdn.registerdisney.go.com,多媒體
+- DOMAIN-SUFFIX,cws.conviva.com,多媒體
+- DOMAIN-SUFFIX,d9.flashtalking.com,多媒體
+- DOMAIN-SUFFIX,disney-plus.net,多媒體
+- DOMAIN-SUFFIX,disney-portal.my.onetrust.com,多媒體
+- DOMAIN-SUFFIX,disney.demdex.net,多媒體
+- DOMAIN-SUFFIX,disney.my.sentry.io,多媒體
+- DOMAIN-SUFFIX,disneyplus.bn5x.net,多媒體
+- DOMAIN-SUFFIX,disneyplus.com,多媒體
+- DOMAIN-SUFFIX,disneyplus.com.ssl.sc.omtrdc.net,多媒體
+- DOMAIN-SUFFIX,disneystreaming.com,多媒體
+- DOMAIN-SUFFIX,dssott.com,多媒體
+- DOMAIN-SUFFIX,execute-api.us-east-1.amazonaws.com,多媒體
+- DOMAIN-SUFFIX,js-agent.newrelic.com,多媒體
+- IN-USER,Argo*,多媒體
+- DOMAIN-KEYWORD,apiproxy-device-prod-nlb-,多媒體
+- DOMAIN-KEYWORD,dualstack.apiproxy-,多媒體
+- DOMAIN-KEYWORD,netflixdnstest,多媒體
+- DOMAIN,netflix.com.edgesuite.net,多媒體
+- DOMAIN-SUFFIX,fast.com,多媒體
+- DOMAIN-SUFFIX,netflix.com,多媒體
+- DOMAIN-SUFFIX,netflix.net,多媒體
+- DOMAIN-SUFFIX,netflixdnstest0.com,多媒體
+- DOMAIN-SUFFIX,netflixdnstest1.com,多媒體
+- DOMAIN-SUFFIX,netflixdnstest2.com,多媒體
+- DOMAIN-SUFFIX,netflixdnstest3.com,多媒體
+- DOMAIN-SUFFIX,netflixdnstest4.com,多媒體
+- DOMAIN-SUFFIX,netflixdnstest5.com,多媒體
+- DOMAIN-SUFFIX,netflixdnstest6.com,多媒體
+- DOMAIN-SUFFIX,netflixdnstest7.com,多媒體
+- DOMAIN-SUFFIX,netflixdnstest8.com,多媒體
+- DOMAIN-SUFFIX,netflixdnstest9.com,多媒體
+- DOMAIN-SUFFIX,nflxext.com,多媒體
+- DOMAIN-SUFFIX,nflximg.com,多媒體
+- DOMAIN-SUFFIX,nflximg.net,多媒體
+- DOMAIN-SUFFIX,nflxso.net,多媒體
+- DOMAIN-SUFFIX,nflxvideo.net,多媒體
+- IN-USER,*youtube*,Google
+- IN-USER,YouTube*,Google
+- IN-USER,com.google.ios.youtube*,Google
+- DOMAIN-KEYWORD,youtube,Google
+- DOMAIN,youtubei.googleapis.com,Google
+- DOMAIN,yt3.ggpht.com,Google
+- DOMAIN-SUFFIX,googlevideo.com,Google
+- DOMAIN-SUFFIX,gvt2.com,Google
+- DOMAIN-SUFFIX,withyoutube.com,Google
+- DOMAIN-SUFFIX,youtu.be,Google
+- DOMAIN-SUFFIX,youtube-nocookie.com,Google
+- DOMAIN-SUFFIX,youtube.com,Google
+- DOMAIN-SUFFIX,youtubeeducation.com,Google
+- DOMAIN-SUFFIX,youtubegaming.com,Google
+- DOMAIN-SUFFIX,youtubekids.com,Google
+- DOMAIN-SUFFIX,yt.be,Google
+- DOMAIN-SUFFIX,ytimg.com,Google
+- IN-USER,*YouTubeMusic*,多媒體
+- IN-USER,*com.google.ios.youtubemusic*,多媒體
+- IN-USER,YouTubeMusic*,多媒體
+- IN-USER,com.google.ios.youtubemusic*,多媒體
+- DOMAIN,music.youtube.com,多媒體
 - DOMAIN-KEYWORD,google,Google
 - DOMAIN-SUFFIX,youtube.com,Google
 - DOMAIN-SUFFIX,google.com,Google
@@ -366,11 +499,22 @@ rules:
 - DOMAIN-SUFFIX,me.com,🍎Apple
 - DOMAIN-SUFFIX,mzstatic.com,🍎Apple
 - DOMAIN-KEYWORD,openai,💬ChatGPT
+- DOMAIN-KEYWORD,openai,💬ChatGPT
+- DOMAIN-SUFFIX,auth0.com,💬ChatGPT
+- DOMAIN-SUFFIX,challenges.cloudflare.com,💬ChatGPT
 - DOMAIN-SUFFIX,chatgpt.com,💬ChatGPT
-- DOMAIN-SUFFIX,chat.openai.com,💬ChatGPT
-- DOMAIN-SUFFIX,auth0.openai.com,💬ChatGPT
-- DOMAIN-SUFFIX,cdn.openai.com,💬ChatGPT
+- DOMAIN-SUFFIX,client-api.arkoselabs.com,💬ChatGPT
+- DOMAIN-SUFFIX,events.statsigapi.net,💬ChatGPT
+- DOMAIN-SUFFIX,featuregates.org,💬ChatGPT
+- DOMAIN-SUFFIX,identrust.com,💬ChatGPT
+- DOMAIN-SUFFIX,intercom.io,💬ChatGPT
+- DOMAIN-SUFFIX,intercomcdn.com,💬ChatGPT
+- DOMAIN-SUFFIX,oaistatic.com,💬ChatGPT
+- DOMAIN-SUFFIX,oaiusercontent.com,💬ChatGPT
 - DOMAIN-SUFFIX,openai.com,💬ChatGPT
+- DOMAIN-SUFFIX,openaiapi-site.azureedge.net,💬ChatGPT
+- DOMAIN-SUFFIX,sentry.io,💬ChatGPT
+- DOMAIN-SUFFIX,stripe.com,💬ChatGPT
 - DOMAIN-KEYWORD,soul2,🏫School
 - DOMAIN-KEYWORD,hkuspace,🏫School
 - DOMAIN-SUFFIX,teams.microsoft.com,🏫School
