@@ -1,3 +1,13 @@
+proxy-groups:
+- interval: 300
+  timeout: 3000
+  url: https://www.google.com/generate_204
+  lazy: true
+  max-failed-times: 3
+  hidden: false
+  name: 💬ChatGPT
+  type: select
+  include-all: false
   proxies:
   - 🇭🇰 Hong Kong
   - 🇭🇰 Hong Kong [Residential]
