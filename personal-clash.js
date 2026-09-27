@@ -91,24 +91,30 @@ const PERSONAL_RULES = [
   "DOMAIN-SUFFIX,stripe.com,💬ChatGPT",
   "MATCH,DIRECT"
 ];
+// Name-based filter: Japan, Taiwan, Singapore, Hong Kong, USA, Malaysia.
+const REGION_FILTER = "(?i)(日本|台灣|臺灣|台湾|新加坡|香港|美國|美国|馬來西亞|马来西亚|🇯🇵|🇹🇼|🇸🇬|🇭🇰|🇺🇸|🇲🇾|(^|[^a-z])(japan|taiwan|singapore|hong[ -]?kong|united[ -]?states|malaysia|jp|jpn|tw|twn|sg|sgp|hk|hkg|us|usa|my|mys)([^a-z]|$))";
+const REGION_NAME = new RegExp(REGION_FILTER.replace(/^\(\?i\)/, ''), 'i');
 
 function main(config) {
   if (!config || typeof config !== 'object' || Array.isArray(config)) {
     throw new Error('Expected a Clash configuration object');
   }
   const labels = ['💬ChatGPT', 'Google', 'muti_media'];
-  const nodes = Array.from(new Set((Array.isArray(config.proxies) ? config.proxies : [])
+  let nodes = Array.from(new Set((Array.isArray(config.proxies) ? config.proxies : [])
     .map(p => p && p.name)
     .filter(n => typeof n === 'string' && n.trim().length > 0)));
   if (nodes.some(n => labels.includes(n))) {
     throw new Error('A proxy node has the same name as a personal group; rename that node first');
   }
+  nodes = nodes.filter(name => REGION_NAME.test(name));
   const providers = config['proxy-providers'];
   const providerNames = providers && typeof providers === 'object' && !Array.isArray(providers)
     ? Object.keys(providers) : [];
   const makeGroup = (name, first) => {
     const choices = Array.from(new Set([...first, ...nodes]));
-    const group = {name, type: 'select', hidden: false};
+    // Explicit node choices are filtered above; filter also covers provider nodes.
+    // Keep original node/provider definitions for dialer-proxy dependencies.
+    const group = {name, type: 'select', hidden: false, filter: REGION_FILTER};
     if (choices.length) group.proxies = choices;
     if (providerNames.length) group.use = providerNames;
     if (!choices.length && !providerNames.length) group.proxies = ['DIRECT'];
