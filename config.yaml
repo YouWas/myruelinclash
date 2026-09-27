@@ -1,0 +1,147 @@
+# Mihomo / Clash Verge Rev 完整設定結構（尚需填入有效節點訂閱）
+# 公開版本只有佔位網址，不含私人訂閱或節點憑證。
+# 請在本機副本或客戶端覆寫中替換 proxy-providers.subscription.url。
+# 遠端 YAML 更新會覆蓋直接編輯的副本；長期使用請配置客戶端持久覆寫。
+# 原 JS 只提供分組／規則；以下基礎項目是新增的保守預設。
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+profile:
+  store-selected: true
+
+# 使用系統 DNS；TUN 和系統代理由客戶端操作。
+dns:
+  enable: false
+tun:
+  enable: false
+
+proxies: []
+proxy-providers:
+  subscription:
+    type: http
+    url: "https://example.invalid/REPLACE_WITH_YOUR_SUBSCRIPTION_URL"
+    path: ./proxy_providers/personal-subscription.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: "https://www.google.com/generate_204"
+      interval: 300
+      timeout: 3000
+      lazy: true
+
+proxy-groups:
+  - name: "💬ChatGPT"
+    type: select
+    use:
+      - subscription
+    hidden: false
+  - name: "Google"
+    type: select
+    proxies:
+      - DIRECT
+      - "💬ChatGPT"
+    use:
+      - subscription
+    hidden: false
+  - name: "muti_media"
+    type: select
+    proxies:
+      - DIRECT
+    use:
+      - subscription
+    hidden: false
+
+# 由原 JS 轉換：移除誤用的 IN-USER、去重，將 Music 精確域名提前。
+# Google / muti_media 預設直連，使用時請按需求切換節點。
+# 未匹配的流量直連；共享服務域名仍沿用原腳本的分組。
+rules:
+  - "DOMAIN-SUFFIX,byteoversea.com,muti_media"
+  - "DOMAIN-SUFFIX,ibytedtos.com,muti_media"
+  - "DOMAIN-SUFFIX,ipstatp.com,muti_media"
+  - "DOMAIN-SUFFIX,muscdn.com,muti_media"
+  - "DOMAIN-SUFFIX,musical.ly,muti_media"
+  - "DOMAIN-SUFFIX,tik-tokapi.com,muti_media"
+  - "DOMAIN-SUFFIX,tiktok.com,muti_media"
+  - "DOMAIN-SUFFIX,tiktokcdn.com,muti_media"
+  - "DOMAIN-SUFFIX,tiktokv.com,muti_media"
+  - "DOMAIN,cdn.registerdisney.go.com,muti_media"
+  - "DOMAIN-SUFFIX,adobedtm.com,muti_media"
+  - "DOMAIN-SUFFIX,bam.nr-data.net,muti_media"
+  - "DOMAIN-SUFFIX,bamgrid.com,muti_media"
+  - "DOMAIN-SUFFIX,braze.com,muti_media"
+  - "DOMAIN-SUFFIX,cdn.optimizely.com,muti_media"
+  - "DOMAIN-SUFFIX,cdn.registerdisney.go.com,muti_media"
+  - "DOMAIN-SUFFIX,cws.conviva.com,muti_media"
+  - "DOMAIN-SUFFIX,d9.flashtalking.com,muti_media"
+  - "DOMAIN-SUFFIX,disney-plus.net,muti_media"
+  - "DOMAIN-SUFFIX,disney-portal.my.onetrust.com,muti_media"
+  - "DOMAIN-SUFFIX,disney.demdex.net,muti_media"
+  - "DOMAIN-SUFFIX,disney.my.sentry.io,muti_media"
+  - "DOMAIN-SUFFIX,disneyplus.bn5x.net,muti_media"
+  - "DOMAIN-SUFFIX,disneyplus.com,muti_media"
+  - "DOMAIN-SUFFIX,disneyplus.com.ssl.sc.omtrdc.net,muti_media"
+  - "DOMAIN-SUFFIX,disneystreaming.com,muti_media"
+  - "DOMAIN-SUFFIX,dssott.com,muti_media"
+  - "DOMAIN-SUFFIX,execute-api.us-east-1.amazonaws.com,muti_media"
+  - "DOMAIN-SUFFIX,js-agent.newrelic.com,muti_media"
+  - "DOMAIN-KEYWORD,apiproxy-device-prod-nlb-,muti_media"
+  - "DOMAIN-KEYWORD,dualstack.apiproxy-,muti_media"
+  - "DOMAIN-KEYWORD,netflixdnstest,muti_media"
+  - "DOMAIN,netflix.com.edgesuite.net,muti_media"
+  - "DOMAIN-SUFFIX,fast.com,muti_media"
+  - "DOMAIN-SUFFIX,netflix.com,muti_media"
+  - "DOMAIN-SUFFIX,netflix.net,muti_media"
+  - "DOMAIN-SUFFIX,netflixdnstest0.com,muti_media"
+  - "DOMAIN-SUFFIX,netflixdnstest1.com,muti_media"
+  - "DOMAIN-SUFFIX,netflixdnstest2.com,muti_media"
+  - "DOMAIN-SUFFIX,netflixdnstest3.com,muti_media"
+  - "DOMAIN-SUFFIX,netflixdnstest4.com,muti_media"
+  - "DOMAIN-SUFFIX,netflixdnstest5.com,muti_media"
+  - "DOMAIN-SUFFIX,netflixdnstest6.com,muti_media"
+  - "DOMAIN-SUFFIX,netflixdnstest7.com,muti_media"
+  - "DOMAIN-SUFFIX,netflixdnstest8.com,muti_media"
+  - "DOMAIN-SUFFIX,netflixdnstest9.com,muti_media"
+  - "DOMAIN-SUFFIX,nflxext.com,muti_media"
+  - "DOMAIN-SUFFIX,nflximg.com,muti_media"
+  - "DOMAIN-SUFFIX,nflximg.net,muti_media"
+  - "DOMAIN-SUFFIX,nflxso.net,muti_media"
+  - "DOMAIN-SUFFIX,nflxvideo.net,muti_media"
+  - "DOMAIN,music.youtube.com,muti_media"
+  - "DOMAIN-KEYWORD,youtube,Google"
+  - "DOMAIN,youtubei.googleapis.com,Google"
+  - "DOMAIN,yt3.ggpht.com,Google"
+  - "DOMAIN-SUFFIX,googlevideo.com,Google"
+  - "DOMAIN-SUFFIX,gvt2.com,Google"
+  - "DOMAIN-SUFFIX,withyoutube.com,Google"
+  - "DOMAIN-SUFFIX,youtu.be,Google"
+  - "DOMAIN-SUFFIX,youtube-nocookie.com,Google"
+  - "DOMAIN-SUFFIX,youtube.com,Google"
+  - "DOMAIN-SUFFIX,youtubeeducation.com,Google"
+  - "DOMAIN-SUFFIX,youtubegaming.com,Google"
+  - "DOMAIN-SUFFIX,youtubekids.com,Google"
+  - "DOMAIN-SUFFIX,yt.be,Google"
+  - "DOMAIN-SUFFIX,ytimg.com,Google"
+  - "DOMAIN-KEYWORD,google,Google"
+  - "DOMAIN-SUFFIX,google.com,Google"
+  - "DOMAIN-SUFFIX,gstatic.com,Google"
+  - "DOMAIN-SUFFIX,ggpht.com,Google"
+  - "DOMAIN-KEYWORD,openai,💬ChatGPT"
+  - "DOMAIN-SUFFIX,auth0.com,💬ChatGPT"
+  - "DOMAIN-SUFFIX,challenges.cloudflare.com,💬ChatGPT"
+  - "DOMAIN-SUFFIX,chatgpt.com,💬ChatGPT"
+  - "DOMAIN-SUFFIX,client-api.arkoselabs.com,💬ChatGPT"
+  - "DOMAIN-SUFFIX,events.statsigapi.net,💬ChatGPT"
+  - "DOMAIN-SUFFIX,featuregates.org,💬ChatGPT"
+  - "DOMAIN-SUFFIX,identrust.com,💬ChatGPT"
+  - "DOMAIN-SUFFIX,intercom.io,💬ChatGPT"
+  - "DOMAIN-SUFFIX,intercomcdn.com,💬ChatGPT"
+  - "DOMAIN-SUFFIX,oaistatic.com,💬ChatGPT"
+  - "DOMAIN-SUFFIX,oaiusercontent.com,💬ChatGPT"
+  - "DOMAIN-SUFFIX,openai.com,💬ChatGPT"
+  - "DOMAIN-SUFFIX,openaiapi-site.azureedge.net,💬ChatGPT"
+  - "DOMAIN-SUFFIX,sentry.io,💬ChatGPT"
+  - "DOMAIN-SUFFIX,stripe.com,💬ChatGPT"
+  - "MATCH,DIRECT"
+
