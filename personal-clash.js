@@ -1,6 +1,7 @@
 // Clash Verge Rev: paste into a local/global JavaScript override.
 // Uses the current subscription's nodes and providers; no private URL is embedded.
-// Replaces routing rules. Unmatched traffic is DIRECT.
+// Replaces ALL subscription routing rules and proxy groups. Unmatched traffic is DIRECT.
+// Keep the client in Rule mode; client UI overrides can supersede config.mode.
 const PERSONAL_RULES = [
   "DOMAIN-SUFFIX,byteoversea.com,muti_media",
   "DOMAIN-SUFFIX,ibytedtos.com,muti_media",
@@ -113,14 +114,12 @@ function main(config) {
     if (!choices.length && !providerNames.length) group.proxies = ['DIRECT'];
     return group;
   };
-  const retained = (Array.isArray(config['proxy-groups']) ? config['proxy-groups'] : [])
-    .filter(g => g && !labels.includes(g.name));
   config['proxy-groups'] = [
     makeGroup('💬ChatGPT', []),
     makeGroup('Google', ['DIRECT', '💬ChatGPT']),
-    makeGroup('muti_media', ['DIRECT']),
-    ...retained
+    makeGroup('muti_media', ['DIRECT'])
   ];
+  config.mode = 'rule';
   config.rules = [...PERSONAL_RULES];
   return config;
 }
