@@ -1,0 +1,43 @@
+# Merge these keys into your existing Clash Meta configuration. NOT a complete subscription.
+# Existing proxies / proxy-providers remain in your current configuration.
+# Preserve unrelated groups/providers; replace old same-name definitions instead of duplicating keys.
+proxy-groups:
+  - name: "💬ChatGPT"
+    type: select
+    include-all: true
+  - name: "Google"
+    type: select
+    include-all: true
+    proxies: ["DIRECT", "💬ChatGPT"]
+  - name: "muti_media"
+    type: select
+    include-all: true
+    proxies: ["DIRECT"]
+
+rule-providers:
+  personal-media:
+    type: "http"
+    behavior: "classical"
+    url: "https://raw.githubusercontent.com/YouWas/myruelinclash/main/rules/media.yaml"
+    path: "./rules/personal-media.yaml"
+    interval: 86400
+  personal-google:
+    type: "http"
+    behavior: "classical"
+    url: "https://raw.githubusercontent.com/YouWas/myruelinclash/main/rules/google.yaml"
+    path: "./rules/personal-google.yaml"
+    interval: 86400
+  personal-chatgpt:
+    type: "http"
+    behavior: "classical"
+    url: "https://raw.githubusercontent.com/YouWas/myruelinclash/main/rules/chatgpt.yaml"
+    path: "./rules/personal-chatgpt.yaml"
+    interval: 86400
+
+# Order matters: media (YouTube Music) before Google / YouTube.
+rules:
+  - "RULE-SET,personal-media,muti_media"
+  - "RULE-SET,personal-google,Google"
+  - "RULE-SET,personal-chatgpt,💬ChatGPT"
+  - "MATCH,DIRECT"
+
