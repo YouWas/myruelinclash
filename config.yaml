@@ -1,4 +1,4 @@
-# Mihomo / Clash Verge Rev 完整設定結構（尚需填入有效節點訂閱）
+# 手機／平板 Clash Meta 完整設定（尚需填入有效節點訂閱）
 # 公開版本只有佔位網址，不含私人訂閱或節點憑證。
 # 請在本機副本或客戶端覆寫中替換 proxy-providers.subscription.url。
 # 遠端 YAML 更新會覆蓋直接編輯的副本；長期使用請配置客戶端持久覆寫。
@@ -24,6 +24,8 @@ proxy-providers:
     url: "https://example.invalid/REPLACE_WITH_YOUR_SUBSCRIPTION_URL"
     path: ./proxy_providers/personal-subscription.yaml
     interval: 3600
+    # 依節點名稱保留六個地區；不檢查實際出口 IP。
+    filter: "(?i)(日本|台灣|臺灣|台湾|新加坡|香港|美國|美国|馬來西亞|马来西亚|🇯🇵|🇹🇼|🇸🇬|🇭🇰|🇺🇸|🇲🇾|(^|[^a-z])(japan|taiwan|singapore|hong[ -]?kong|united[ -]?states|malaysia|jp|jpn|tw|twn|sg|sgp|hk|hkg|us|usa|my|mys)([^a-z]|$))"
     health-check:
       enable: true
       url: "https://www.google.com/generate_204"
